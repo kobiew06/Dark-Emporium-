@@ -1,0 +1,2 @@
+# Flask is required for the backend API and static frontend serving.
+flask>=3.0.0

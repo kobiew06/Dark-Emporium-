@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Full-Stack Test Page</title>
+</head>
+<body>
+    <!-- This page is intentionally plain HTML so backend features can be tested without CSS dependencies. -->
+    <h1>Basic Full-Stack Test Page</h1>
+
+    <!-- Quick links to existing pages for navigation while testing. -->
+    <p>
+        <a href="/">Home</a> |
+        <a href="/cart.html">Cart</a> |
+        <a href="/admin.html">Admin</a>
+    </p>
+
+    <hr>
+
+    <!-- Health endpoint test to confirm the backend is reachable. -->
+    <h2>1) Health Check</h2>
+    <button id="btn-health">Check /api/health</button>
+    <pre id="health-output"></pre>
+
+    <hr>
+
+    <!-- Product endpoint test to verify DB product retrieval is working. -->
+    <h2>2) Products</h2>
+    <button id="btn-products">Load /api/products</button>
+    <pre id="products-output"></pre>
+
+    <hr>
+
+    <!-- Checkout endpoint test with simple customer and item inputs. -->
+    <h2>3) Checkout</h2>
+    <p>Use product IDs from /api/products (for example: 1, 2, 3).</p>
+
+    <label for="email">Email</label><br>
+    <input id="email" type="email" value="test@example.com"><br><br>
+
+    <label for="phone">Phone</label><br>
+    <input id="phone" type="text" value="0400 000 000"><br><br>
+
+    <label for="suburb">Suburb</label><br>
+    <input id="suburb" type="text" value="Springfield"><br><br>
+
+    <label for="items">Items JSON (id + quantity)</label><br>
+    <textarea id="items" rows="8" cols="60">[
+  {"id": 1, "quantity": 2},
+  {"id": 2, "quantity": 1}
+]</textarea><br><br>
+
+    <button id="btn-checkout">POST /api/checkout</button>
+    <pre id="checkout-output"></pre>
+
+    <hr>
+
+    <!-- Admin endpoint test to verify completed sales can be viewed. -->
+    <h2>4) Admin Sales Summary</h2>
+    <label for="admin-key">Admin key</label><br>
+    <input id="admin-key" type="text" value="dark-emporium-admin"><br><br>
+
+    <button id="btn-admin">Load /api/admin/sales</button>
+    <pre id="admin-output"></pre>
+
+    <script>
+        // This helper prints formatted JSON into the selected <pre> output block.
+        function printJson(elementId, data) {
+            document.getElementById(elementId).textContent = JSON.stringify(data, null, 2);
+        }
+
+        // This handler checks backend health status.
+        document.getElementById("btn-health").addEventListener("click", async () => {
+            try {
+                const response = await fetch("/api/health");
+                const data = await response.json();
+                printJson("health-output", data);
+            } catch (error) {
+                document.getElementById("health-output").textContent = "Request failed.";
+            }
+        });
+
+        // This handler fetches all products from the database.
+        document.getElementById("btn-products").addEventListener("click", async () => {
+            try {
+                const response = await fetch("/api/products");
+                const data = await response.json();
+                printJson("products-output", data);
+            } catch (error) {
+                document.getElementById("products-output").textContent = "Request failed.";
+            }
+        });
+
+        // This handler sends a checkout payload to create a completed sale.
+        document.getElementById("btn-checkout").addEventListener("click", async () => {
+            const output = document.getElementById("checkout-output");
+
+            let items;
+            try {
+                items = JSON.parse(document.getElementById("items").value);
+            } catch (error) {
+                output.textContent = "Items JSON is invalid.";
+                return;
+            }
+
+            const payload = {
+                email: document.getElementById("email").value.trim(),
+                phone: document.getElementById("phone").value.trim(),
+                suburb: document.getElementById("suburb").value.trim(),
+                items: items
+            };
+
+            try {
+                const response = await fetch("/api/checkout", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                output.textContent = "HTTP " + response.status + "\n" + JSON.stringify(data, null, 2);
+            } catch (error) {
+                output.textContent = "Request failed.";
+            }
+        });
+
+        // This handler loads admin sales summary using the provided admin key.
+        document.getElementById("btn-admin").addEventListener("click", async () => {
+            const key = document.getElementById("admin-key").value.trim();
+            const output = document.getElementById("admin-output");
+
+            try {
+                const response = await fetch("/api/admin/sales?admin_key=" + encodeURIComponent(key));
+                const data = await response.json();
+                output.textContent = "HTTP " + response.status + "\n" + JSON.stringify(data, null, 2);
+            } catch (error) {
+                output.textContent = "Request failed.";
+            }
+        });
+    </script>
+</body>
+</html>

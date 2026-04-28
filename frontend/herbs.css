@@ -1,0 +1,7 @@
+/* Import shared styles and apply a subtle herbs color tone. */
+@import url("base.css");
+
+.page-header,
+.product-img {
+    background: #e8f5e9;
+}

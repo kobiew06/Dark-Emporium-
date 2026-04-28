@@ -1,0 +1,7 @@
+/* Import shared styles and apply a subtle creature components tone. */
+@import url("base.css");
+
+.page-header,
+.product-img {
+    background: #fff7ed;
+}

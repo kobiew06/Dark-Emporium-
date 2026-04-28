@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Sales Summary - The Dark Emporium</title>
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+
+<!-- This page allows the admin to view completed sales and item-level cost/sell values. -->
+<h1>Admin Sales Summary</h1>
+<a href="index.html" class="logo">&#9883; Home</a>
+
+<!-- This input is a simple demo admin key gate to protect summary data. -->
+<p>
+    <label for="admin-key">Admin Key</label>
+    <input id="admin-key" type="password" value="dark-emporium-admin">
+    <button id="load-sales">Load Sales</button>
+</p>
+
+<!-- This message area shows endpoint and authorization errors. -->
+<p id="admin-message"></p>
+
+<!-- This table presents sale-level totals including calculated profit. -->
+<table>
+    <thead>
+        <tr>
+            <th>Sale ID</th>
+            <th>Purchaser</th>
+            <th>Phone</th>
+            <th>Suburb</th>
+            <th>Total Cost</th>
+            <th>Total Sell</th>
+            <th>Profit</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody id="sales-body"></tbody>
+</table>
+
+<!-- This section shows line-item details for all loaded sales. -->
+<h2>Sale Item Details</h2>
+<div id="sales-items"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>

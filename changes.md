@@ -1,0 +1,11 @@
+- Added a Flask backend in backend/app.py to serve frontend pages and provide full-stack API endpoints.
+- Added SQLite schema and seed data in database/schema.sql with 15 products (brief requires at least 10).
+- Added backend checkout endpoint (/api/checkout) with server-side validation for email, phone, suburb, and cart item quantities.
+- Added backend admin endpoint (/api/admin/sales) to view completed sales with purchaser details, cost totals, sell totals, and profit.
+- Added backend security-focused practices: parameterized SQL queries and strict validation checks.
+- Updated frontend/cart.html to include delivery detail fields (email, phone, suburb) and a Complete Sale button.
+- Updated frontend/cart.html to include an Admin Sales Summary page link.
+- Updated frontend/cartDisplay.js so shoppers can increase/decrease quantity and remove items from cart.
+- Updated frontend/cartDisplay.js to submit checkout details and cart contents to backend API.
+- Added frontend/admin.html and frontend/admin.js for admin sales summary viewing.
+- Added basic CSS to be replaced later

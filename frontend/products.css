@@ -1,0 +1,17 @@
+/* Import shared styles for products, cart, and admin pages. */
+@import url("base.css");
+
+/* Provide spacing for the breadcrumb and page title block. */
+.breadcrumb,
+.page-header {
+    padding: 8px 16px;
+}
+
+/* Emphasize category cards slightly on the main products page. */
+.category-card {
+    transition: transform 0.15s ease-in-out;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+}

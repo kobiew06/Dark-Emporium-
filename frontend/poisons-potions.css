@@ -1,0 +1,16 @@
+/* Import shared styles and apply a subtle poisons/potions tone. */
+@import url("base.css");
+
+.page-header,
+.product-img,
+.warning-bar {
+    background: #fef2f2;
+}
+
+/* Ensure warning text block remains visible and separated. */
+.warning-bar {
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    margin: 16px;
+    padding: 10px 12px;
+}

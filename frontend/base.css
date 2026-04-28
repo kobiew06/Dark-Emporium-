@@ -1,0 +1,208 @@
+/* Base layout styles shared by all pages for testing. */
+* {
+    box-sizing: border-box;
+}
+
+/* Use a simple readable font stack and neutral colors. */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    color: #222222;
+    background: #f6f7fb;
+}
+
+/* Keep content from touching screen edges on larger screens. */
+main,
+section,
+.page-header,
+.breadcrumb,
+.featured-banner,
+.warning-bar,
+h1,
+h2,
+p,
+table,
+form {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1100px;
+}
+
+/* Basic header and navigation styling. */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    background: #1f2937;
+    color: #ffffff;
+    padding: 12px 16px;
+}
+
+/* Keep links visible on dark header background. */
+header a,
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Highlight active or hovered navigation links. */
+nav a {
+    margin-right: 10px;
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+nav a:hover,
+nav a.active {
+    background: #374151;
+}
+
+/* Show cart button as a clear call-to-action. */
+.cart-btn {
+    display: inline-block;
+    background: #0f766e;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Consistent spacing for headings and paragraphs. */
+h1,
+h2,
+p {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* Simple card grid used by category and product pages. */
+.category-grid,
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    padding: 16px;
+}
+
+/* Shared card look for category and product items. */
+.category-card,
+.product-card {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Spacing inside card content. */
+.card-body,
+.product-info {
+    padding: 12px;
+}
+
+/* Visual treatment for card banner/icon area. */
+.card-banner,
+.product-img,
+.icon {
+    display: block;
+    font-size: 2rem;
+    text-align: center;
+    padding: 12px;
+    background: #e5e7eb;
+}
+
+/* Basic utility badge styles for rarity labels. */
+.rarity {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: #d1fae5;
+    color: #065f46;
+}
+
+/* Shared button styling for forms and add-to-cart actions. */
+button,
+.btn-primary,
+.btn-add {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Slightly darker hover feedback for clickable controls. */
+button:hover,
+.btn-primary:hover,
+.btn-add:hover {
+    background: #1d4ed8;
+}
+
+/* Keep form fields readable and aligned. */
+input,
+textarea {
+    width: 100%;
+    max-width: 520px;
+    padding: 8px;
+    border: 1px solid #9ca3af;
+    border-radius: 6px;
+}
+
+/* Table styling for cart and admin summary pages. */
+table {
+    width: calc(100% - 32px);
+    margin: 16px;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+th,
+td {
+    border: 1px solid #d1d5db;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background: #e5e7eb;
+}
+
+/* Footer styling for consistent page ending. */
+footer {
+    margin-top: 20px;
+    background: #111827;
+    color: #ffffff;
+    padding: 14px 16px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Small-screen adjustments for better mobile testing. */
+@media (max-width: 700px) {
+    header {
+        align-items: flex-start;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav a {
+        display: inline-block;
+        margin-bottom: 6px;
+    }
+}

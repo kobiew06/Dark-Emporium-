@@ -1,0 +1,16 @@
+/* Import shared styles for the home page. */
+@import url("base.css");
+
+/* Give the hero section enough spacing for readability during tests. */
+.hero {
+    padding: 24px 16px;
+}
+
+/* Add a light accent background for featured content area. */
+.featured-banner {
+    background: #dbeafe;
+    border: 1px solid #93c5fd;
+    border-radius: 10px;
+    margin: 16px;
+    padding: 16px;
+}

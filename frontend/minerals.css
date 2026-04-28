@@ -1,0 +1,7 @@
+/* Import shared styles and apply a subtle minerals color tone. */
+@import url("base.css");
+
+.page-header,
+.product-img {
+    background: #eef2ff;
+}
